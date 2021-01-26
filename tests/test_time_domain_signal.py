@@ -190,7 +190,6 @@ def test_convolved_fast_not_bool(time_domain_signal_instance, audio_data, fast_c
 @pytest.mark.parametrize('fast_convolution', [True])
 def test_convolved_fast(time_domain_signal_instance, audio_data, fast_convolution):
     convolved = time_domain_signal_instance.convolve(audio_data, fast_convolution)
-    convolved_direct = time_domain_signal_instance.convolve(audio_data)
     assert numpy.all(numpy.isclose(convolved.data,
-                     convolved_direct.data,
+                     numpy.array([2000, 4000, 2000, -4000, -8000, -4000, 2000, 4000, 2000], dtype=numpy.int16),
                      atol=1))
